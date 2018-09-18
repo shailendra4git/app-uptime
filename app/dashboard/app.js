@@ -7,6 +7,8 @@ var partials = require('express-partials');
 var flash = require('connect-flash');
 var moment = require('moment');
 
+var errorhandler = require('errorhandler')
+
 var Check = require('../../models/check');
 var Tag = require('../../models/tag');
 var TagDailyStat = require('../../models/tagDailyStat');
@@ -18,7 +20,7 @@ var app = module.exports = express();
 
 // middleware
 
-app.configure(function(){
+// app.configure(function(){
   app.use(partials());
   app.use(flash());
   app.use(function locals(req, res, next) {
@@ -36,23 +38,21 @@ app.configure(function(){
     res.locals.moment = moment;
     next();
   });
-  app.use(app.router);
+  // app.use(app.router);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.static(__dirname + '/public'));
-});
+// });
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+// app.configure('development', function(){
+  app.use(errorhandler({ dumpExceptions: true, showStack: true }));
+// });
 
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
+// app.configure('production', function(){
+  app.use(errorhandler());
+// });
 
-app.locals({
-  version: moduleInfo.version
-});
+app.locals.version= moduleInfo.version;
 
 // Routes
 

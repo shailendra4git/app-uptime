@@ -1,12 +1,12 @@
-<script src="<%= route %>/javascripts/jquery.tablesorter.min.js"></script>
-<script src="<%= route %>/javascripts/uptimeBar.js"></script>
-<script src="<%= route %>/javascripts/ejs.min.js"></script>
+<script src="javascripts/jquery.tablesorter.min.js"></script>
+<script src="javascripts/uptimeBar.js"></script>
+<script src="javascripts/ejs.min.js"></script>
 <h1>Checks <small class="pull-right">last 24 hours</small></h1>
 <% if (info.length) { %>
 <div class="alert alert-success"><%= info %></div>
 <% } %>
 <div style="text-align:right">
-  <a class="btn btn-primary" href="<%= route %>/checks/new">Create check</a>
+  <a class="btn btn-primary" href="/checks/new">Create check</a>
 </div>
 <table class="table" id="checks">
   <thead>
@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
         if (new Date(check.lastTested) > lastTest) {
           lastTest = new Date(check.lastTested);
         }
-        lines.push(ejs.render(check_template, { check: check, route: '<%= route %>' }));
+        lines.push(ejs.render(check_template, { check: check, route: '/' }));
       });
       $('#checks tbody').html(lines.join(''));
       $('#checks').trigger('update');
