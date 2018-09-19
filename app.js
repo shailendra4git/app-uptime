@@ -39,7 +39,10 @@ var server = http.createServer(app);
   // app.use(app.router);
   // the following middlewares are only necessary for the mounted 'dashboard' app, 
   // but express needs it on the parent app (?) and it therefore pollutes the api
-  app.use(bodyParser());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser('Z5V45V6B5U56B7J5N67J5VTH345GC4G5V4'));
   app.use(cookieSession({

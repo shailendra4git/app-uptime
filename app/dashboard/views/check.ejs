@@ -1,11 +1,11 @@
-<script src="javascripts/ejs.min.js"></script>
-<script src="javascripts/bootstrap-affix.js"></script>
-<script src="javascripts/checkState.js"></script>
-<script src="javascripts/dateInterval.js"></script>
-<script src="javascripts/dateNavigation.js"></script>
-<script src="javascripts/statNavigation.js"></script>
-<script src="javascripts/uptimeBar.js"></script>
-<script src="javascripts/flotr2.min.js"></script>
+<script src="<%= route %>/javascripts/ejs.min.js"></script>
+<script src="<%= route %>/javascripts/bootstrap-affix.js"></script>
+<script src="<%= route %>/javascripts/checkState.js"></script>
+<script src="<%= route %>/javascripts/dateInterval.js"></script>
+<script src="<%= route %>/javascripts/dateNavigation.js"></script>
+<script src="<%= route %>/javascripts/statNavigation.js"></script>
+<script src="<%= route %>/javascripts/uptimeBar.js"></script>
+<script src="<%= route %>/javascripts/flotr2.min.js"></script>
 <script>
 var ejs = require('ejs');
 ejs.open = '{{';
@@ -13,11 +13,11 @@ ejs.close = '}}';
 </script>
 <div style="float: right;">
   <span id="check_24h"></span>
-  <a href="/checks/<%= check._id %>/edit" class="btn btn-primary">Edit</a>
+  <a href="<%= route %>/checks/<%= check._id %>/edit" class="btn btn-primary">Edit</a>
 </div>
 <h1>
   Check "<%= check.name %>"
-  <a href="<%= check.url %>" target="_blank"><img src="/images/external-link-ltr-icon.png"></a>
+  <a href="<%= check.url %>" target="_blank"><img src="<%= route %>/images/external-link-ltr-icon.png"></a>
 </h1>
 <% if (info.length) { %>
 <div class="alert alert-success"><%= info %></div>

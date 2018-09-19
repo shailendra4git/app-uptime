@@ -24,12 +24,12 @@ var app = module.exports = express();
   app.use(partials());
   app.use(flash());
   app.use(function locals(req, res, next) {
-    res.locals.route = app.route;
+    res.locals.route = app.mountpath;
     res.locals.addedCss = [];
     res.locals.renderCssTags = function (all) {
       if (all != undefined) {
         return all.map(function(css) {
-          return '<link rel="stylesheet" href="' + app.route + '/stylesheets/' + css + '">';
+          return '<link rel="stylesheet" href="' + app.mountpath + '/stylesheets/' + css + '">';
         }).join('\n ');
       } else {
         return '';
@@ -83,7 +83,7 @@ app.post('/checks', function(req, res, next) {
   check.save(function(err) {
     if (err) return next(err);
     req.flash('info', 'New check has been created');
-    res.redirect(app.route + (req.body.saveandadd ? '/checks/new' : ('/checks/' + check._id + '?type=hour&date=' + Date.now())));
+    res.redirect(app.mountpath + (req.body.saveandadd ? '/checks/new' : ('/checks/' + check._id + '?type=hour&date=' + Date.now())));
   });
 });
 
@@ -130,7 +130,7 @@ app.put('/checks/:id', function(req, res, next) {
     check.save(function(err2) {
       if (err2) return next(err2);
       req.flash('info', 'Changes have been saved');
-      res.redirect(app.route + '/checks/' + req.params.id);
+      res.redirect(app.mountpath + '/checks/' + req.params.id);
     });
   });
 });
@@ -142,7 +142,7 @@ app.delete('/checks/:id', function(req, res, next) {
     check.remove(function(err2) {
       if (err2) return next(err2);
       req.flash('info', 'Check has been deleted');
-      res.redirect(app.route + '/checks');
+      res.redirect(app.mountpath + '/checks');
     });
   });
 });

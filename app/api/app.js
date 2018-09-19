@@ -77,7 +77,7 @@ app.get('/', function(req, res) {
   var routes = [];
   for (var verb in app.routes) {
     app.routes[verb].forEach(function(route) {
-      routes.push({method: verb.toUpperCase() , path: app.route + route.path});
+      routes.push({method: verb.toUpperCase() , path: app.mountpath + route.path});
     });
   }
   res.json(routes);

@@ -64,7 +64,7 @@ module.exports = function(app) {
         tags: req.check.tags,
         message: req.check.isPaused ? 'paused' : 'restarted'
       }).save();
-      res.redirect(app.route + '/checks/' + req.params.id);
+      res.redirect(app.mountpath + '/checks/' + req.params.id);
     });
   });
 

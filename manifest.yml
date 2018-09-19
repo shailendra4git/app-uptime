@@ -8,4 +8,3 @@ applications:
   buildpack: "https://github.com/cloudfoundry/buildpack-nodejs.git#v1.5.5"
   env: 
     CF_DOMAIN: "sys.eu.cfdev.canopy-cloud.com"
-    NODE_ENV: "production"
