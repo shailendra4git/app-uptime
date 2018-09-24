@@ -1,15 +1,15 @@
-url: 'http://localhost:8082'
+url: 'http://127.0.0.1:8082' #"http://node-meter.apps.eu.cfdev.canopy-cloud.com" # 
 
 mongodb:
-  server:   localhost
-  database: uptime
-  user:     root 
-  password:
-  connectionString:       # alternative to setting server, database, user and password separately
+  server:   "127.0.0.1" #"10.0.12.32" #
+  database: uptime #"c5aa96f7-0916-4308-b1b5-e48905c2a1e8" #
+  user:     root # "7d89f662-3800-4ed8-a7b4-cae589abdc43" #
+  password: root #"d16d7785bc8cc26959162f23e7a14c20"
+  connectionString: "mongodb://localhost:27017/uptime"      # alternative to setting server, database, user and password separately
 
 monitor:
   name:                   origin
-  apiUrl:                 'http://localhost:8082/api' # must be accessible without a proxy
+  apiUrl:                 'http://127.0.0.1:8082/api' #"http://node-meter.apps.eu.cfdev.canopy-cloud.com/api" # must be accessible without a proxy
   pollingInterval:        10000      # ten seconds
   timeout:                5000       # five seconds
   userAgent:              NodeUptime/3.0 (https://github.com/fzaninotto/uptime)
