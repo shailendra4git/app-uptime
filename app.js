@@ -108,7 +108,7 @@ var io = socketIo.listen(server);
 // });
 
 // io.configure('development', function() {
-  if (!config.verbose) io.set('log level', 1);
+  // if (!config.verbose) io.set('log level', 1);
 // });
 
 CheckEvent.on('afterInsert', function(event) {

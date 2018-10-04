@@ -66,7 +66,7 @@ exports.initWebApp = function(options) {
       }
       check.setPollerParam('http_options', options);
     }
-    partial.push(ejs.render(template, { locals: { check: check } }));
+    partial.push(ejs.render(template, { check: check } ));
   });
 
   options.app.use(express.static(__dirname + '/public'));
