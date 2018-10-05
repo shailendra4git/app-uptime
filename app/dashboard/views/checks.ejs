@@ -11,10 +11,11 @@
 <table class="table" id="checks">
   <thead>
     <tr>
-      <th style="width:30%">Name</th>
+      <th style="width:25%">Name</th>
       <th style="width:20%">Status</th>
-      <th style="width:35%" title="Outage periods in the last 24h">Uptime</th>
+      <th style="width:30%" title="Outage periods in the last 24h">Uptime</th>
       <th style="width:15%" title="Average response time in the last 24h">Response Time</th>
+      <th style="width:10%" title="Action">Action</th>
     </tr>
   </thead>
   <tbody></tbody>
@@ -49,10 +50,17 @@
   <td data-sort="0">-</td>
   <td data-sort="0">-</td>
   {{ } }}
+  
+  <td>
+      <form name="deletecheckform" action="<%= route %>/deletecheck/{{= check._id }}" method="get">
+        <input type="submit" class="btn-small btn-danger jqDelete" title="Delete {{= check.name }}" value="Delete" />
+      </form>
+  </td>
 </tr>
 </script>
 <script>
 jQuery(document).ready(function($) {
+
   // highlight current section in main nav
   $('.navbar-inner li').eq(1).addClass('active');
 
@@ -63,7 +71,7 @@ jQuery(document).ready(function($) {
     },
     sortList: [[1,0]]
   });
-
+  
   // Fill in the table
   var check_template = document.getElementById('check_template').innerHTML;
   var ejs = require('ejs');

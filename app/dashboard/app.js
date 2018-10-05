@@ -8,6 +8,7 @@ var flash = require('connect-flash');
 var moment = require('moment');
 
 var errorhandler = require('errorhandler')
+var bodyParser = require('body-parser')
 
 var Check = require('../../models/check');
 var Tag = require('../../models/tag');
@@ -21,6 +22,11 @@ var app = module.exports = express();
 // middleware
 
 // app.configure(function(){
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }));
+  app.use(bodyParser.json());
+
   app.use(partials());
   app.use(flash());
   app.use(function locals(req, res, next) {
@@ -55,6 +61,18 @@ var app = module.exports = express();
 app.locals.version= moduleInfo.version;
 
 // Routes
+
+app.get('/deletecheck/:id', function(req, res, next) {
+  Check.findOne({ _id: req.params.id }, function(err, check) {
+    if (err) return next(err);
+    if (!check) return next(new Error('failed to load check ' + req.params.id));
+    check.remove(function(err2) {
+      if (err2) return next(err2);
+      req.flash('info', 'Check has been deleted');
+      res.redirect(app.mountpath + '/checks');
+    });
+  });
+});
 
 app.get('/events', function(req, res) {
   res.render('events');
