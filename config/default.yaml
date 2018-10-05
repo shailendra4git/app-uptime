@@ -26,7 +26,7 @@ plugins:
   - ./plugins/patternMatcher
   - ./plugins/httpOptions
   # - ./plugins/email
-  # - ./plugins/basicAuth
+  - ./plugins/basicAuth
 
 email:
   method:      SMTP  # possible methods are SMTP, SES, or Sendmail
