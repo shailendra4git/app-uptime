@@ -6,6 +6,7 @@ var Check      = require('../../models/check');
 var CheckEvent = require('../../models/checkEvent');
 
 var errorhandler = require('errorhandler')
+var bodyParser = require('body-parser')
 
 var app = module.exports = express();
 
@@ -17,6 +18,11 @@ var debugErrorHandler = function() {
 // app.configure(function(){
   // app.use(app.router);
 // });
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
 app.use('development', debugErrorHandler);
 

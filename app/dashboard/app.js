@@ -23,7 +23,7 @@ var app = module.exports = express();
 
 // app.configure(function(){
   app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
   }));
   app.use(bodyParser.json());
 
