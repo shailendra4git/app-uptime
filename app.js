@@ -151,7 +151,16 @@ module.exports = app;
 var monitorInstance;
 
 if (!module.parent) {
-  var serverUrl = url.parse(config.url);
+  var VCAP_APPLICATION, appURL;
+
+  if (process.env.VCAP_APPLICATION) {
+    VCAP_APPLICATION = JSON.parse(process.env.VCAP_APPLICATION);
+    appURL = VCAP_APPLICATION.application_uris[0];
+  } else {
+    // LOCAL
+    appURL = config.url;
+  }
+  var serverUrl = url.parse(appURL);
   var port;
   if (config.server && config.server.port) {
     console.error('Warning: The server port setting is deprecated, please use the url setting instead');
