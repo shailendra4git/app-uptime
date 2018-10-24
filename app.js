@@ -72,9 +72,9 @@ config.plugins.forEach(function(pluginName) {
 app.emit('beforeFirstRoute', app, apiApp);
 
 // app.configure('development', function() {
-  if (config.verbose) mongoose.set('debug', true);
-  app.use(express.static(__dirname + '/public/'));
-  app.use(errorhandler({ dumpExceptions: true, showStack: true }));
+  // if (config.verbose) mongoose.set('debug', true);
+  // app.use(express.static(__dirname + '/public/'));
+  // app.use(errorhandler({ dumpExceptions: true, showStack: true }));
 // });
 
 // app.configure('production', function() {
@@ -117,14 +117,15 @@ CheckEvent.on('afterInsert', function(event) {
 
 io.sockets.on('connection', function(socket) {
   socket.on('set check', function(check) {
-    socket.set('check', check);
+    // socket.set('check', check);
+    socket.check = check;
   });
   Ping.on('afterInsert', function(ping) {
-    socket.get('check', function(err, check) {
-      if (ping.check == check) {
+    // socket.get('check', function(err, check) {
+      if (ping.check == socket.check) {
         socket.emit('ping', ping);
       }
-    });
+    // });
   });
 });
 
