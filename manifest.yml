@@ -1,11 +1,13 @@
 ---
 applications:
 - name: "uptime"
-  memory: 128M
-  disk_quota: 128M
+  memory: 256M
+  disk_quota: 256M
   path: "./"
   command: "npm start"
   buildpack: "https://github.com/cloudfoundry/buildpack-nodejs.git#v1.5.5"
-  env: 
-    CF_DOMAIN: "sys.eu01.cf.canopy-cloud.com"
+  env:
     NODE_ENV: "production"
+    SMTP_HOST: "xxxxxx"
+    SMTP_USER_NAME: "xxxxxx"
+    SMTP_PASSWORD: "xxxxxx"

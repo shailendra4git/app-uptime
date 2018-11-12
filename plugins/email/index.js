@@ -51,13 +51,26 @@
  */
 var fs         = require('fs');
 var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 var moment     = require('moment');
 var CheckEvent = require('../../models/checkEvent');
 var ejs        = require('ejs');
 
 exports.initWebApp = function(options) {
   var config = options.config.email;
-  var mailer = nodemailer.createTransport(config.method, config.transport);
+  var mailer = nodemailer.createTransport(smtpTransport({
+      host: process.env.SMTP_HOST, // hostname
+      secure: false, // use SSL
+      port: 587, // port for secure SMTP
+      tls: {
+          rejectUnauthorized: false
+      },
+      auth: {
+          user: process.env.SMTP_USER_NAME,
+          pass: process.env.SMTP_PASSWORD
+      }
+  }));
+
   var templateDir = __dirname + '/views/';
   CheckEvent.on('afterInsert', function(checkEvent) {
     if (!config.event[checkEvent.message]) return;
@@ -73,11 +86,13 @@ exports.initWebApp = function(options) {
       };
       var lines = ejs.render(fs.readFileSync(filename, 'utf8'), renderOptions).split('\n');
       var mailOptions = {
-        from:    config.message.from,
-        to:      config.message.to,
+        //from: '"Atos Cloud Foundry" <admin@login.' + config.cf.domain + '>', // sender address 
+        //to: data.reciever, // list of receivers 
+        from: '"Atos Cloud Foundry" <admin@login.sys.eu.cfdev.canopy-cloud.com>',
+        to: 'shailendra.4.singh@atos.net',
         subject: lines.shift(),
         text:    lines.join('\n')
-      };
+    };
       mailer.sendMail(mailOptions, function(err2, response) {
         if (err2) return console.error('Email plugin error: %s', err2);
         console.log('Notified event by email: Check ' + check.name + ' ' + checkEvent.message);
