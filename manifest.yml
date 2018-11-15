@@ -7,6 +7,7 @@ applications:
   command: "npm start"
   buildpack: "https://github.com/cloudfoundry/buildpack-nodejs.git#v1.5.5"
   env:
+    CF_DOMAIN: "xxxxxx"
     NODE_ENV: "production"
     SMTP_HOST: "xxxxxx"
     SMTP_USER_NAME: "xxxxxx"

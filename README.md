@@ -1,4 +1,4 @@
-acf-uptime
+ACF Uptime
 ======
 
 A remote monitoring application using Node JS, MongoDB, and Twitter Bootstrap.
@@ -17,22 +17,42 @@ Features
 * Detailed uptime reports with animated charts (powered by [Flotr2](http://www.humblesoftware.com/flotr2/))
 * Monitor availability, responsiveness, average response time, and total uptime/downtime
 * Get details about failed checks (HTTP error code, etc.)
-* Group checks by tags and get reports by tag
 * Familiar web interface (powered by [Twitter Bootstrap](http://twitter.github.com/bootstrap/index.html))
-* Complete API for integration with third-party monitoring services
-* Powerful plugin system to ease extension and customization
 * Easy installation and zero administration
+
+## Code
+
+* Main libraries:
+	* NodeJS 5.5.0
+	* Express.js 4.13.3
+	* Socket.io 2.1.1
+
+* Front End
+	* EJS 2.6.1
+	* Twitter Bootstrap
+
+### Environment Variables
+
+Required:
+
+```
+CF_DOMAIN=xxxxxx (e.g. sys.demo.labs.cf.canopy-cloud.com)
+NODE_ENV=xxxxxx (e.g. production)
+SMTP_HOST=xxxxxx (e.g. smtp.demo.net)
+SMTP_USER_NAME=xxxxxx
+SMTP_PASSWORD=xxxxxx
+```
 
 Installing ACF Uptime
 -----------------
 
-Uptime requires Node JS 5.5.0 and MongoDB.
+ACF Uptime requires Node JS 5.5.0 and MongoDB.
 
 To install from GitHub, clone the repository and install dependencies using `npm`:
 
 ```sh
 $ git clone XXXXX
-$ cd uptime
+$ cd acf-uptime
 $ npm install
 ```
 
