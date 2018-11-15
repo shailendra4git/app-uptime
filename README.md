@@ -78,8 +78,6 @@ Architecture
 
 ACF Uptime is composed of two services: a webapp (in `app.js`), and a polling monitor (in `monitor.js)`. For your convenience, the two services start together when you call `node app`.
 
-<img src="https://raw.github.com/fzaninotto/uptime/downloads/architecture.png" title="Uptime architecture" />
-
 However, heavily browsing the webapp may slow down the whole server - including the polling monitor. In other terms, using the application can influence the uptime measurements. To avoid this effect, it is recommended to run the polling monitor in a separate process.
 
 To that extent, set the `autoStartMonitor` setting to `false` in the `production.yaml`, and launch the monitor by hand:
