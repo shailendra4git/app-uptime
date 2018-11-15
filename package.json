@@ -1,8 +1,10 @@
 {
-  "name": "node-uptime",
+  "name": "acf-uptime",
   "description": "Remote monitoring for HTTP applications",
-  "version": "3.2.0",
-  "author": "Francois Zaninotto",
+  "version": "1.0.0",
+  "repository": "https://github.com/atos-cf/acf-uptime.git",
+  "author": "Shailendra Singh <shailendra.4.singh@atos.net>",
+  "license": "Apache-2.0",
   "dependencies": {
     "async": "2.6.1",
     "body-parser": "1.18.3",
@@ -32,20 +34,11 @@
     "mocha": "1.7.x",
     "should": "1.1.0"
   },
-  "keywords": [
-    "uptime",
-    "monitoring",
-    "api",
-    "check"
-  ],
-  "repository": "https://github.com/fzaninotto/uptime",
-  "license": "MIT",
   "engines": {
     "node": "5.5.0",
     "npm": "3.8.3"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha test/lib/",
-    "start": "node app.js"
+    "start": "node app"
   }
 }

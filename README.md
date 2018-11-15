@@ -60,12 +60,8 @@ Lastly, start the application with:
 
 ```sh
 $ node app
-```
 
-If you want a production environment:
-
-```sh
-$ NODE_ENV=production node app
+# => listening to http://localhost:8082
 ```
 
 Adding Checks
